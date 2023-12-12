@@ -1,0 +1,16 @@
+inline uint64_t bswap64_soft(uint64_t * bitmap_row)
+{
+    uint64_t ret = 0;
+
+    ret = ((*bitmap_row) >> 56)
+                | (((*bitmap_row) & 0x00ff000000000000) >> 40)
+                | (((*bitmap_row) & 0x0000ff0000000000) >> 24)
+                | (((*bitmap_row) & 0x000000ff00000000) >> 8)
+                | (((*bitmap_row) & 0x00000000ff000000) << 8)
+                | (((*bitmap_row) & 0x0000000000ff0000) << 24)
+                | (((*bitmap_row) & 0x000000000000ff00) << 40)
+                | ((*bitmap_row) << 56);
+
+    return ret;
+
+}
